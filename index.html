@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MacacoShop - Sua Loja de Eletrônicos e Utilidades</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <header class="header-loja">
+        <div class="logo">
+            <h1>MacacoShop</h1>
+        </div>
+    </header>
+
+    <section class="hero-banner">
+        <h2>As melhores ofertas estão aqui!</h2>
+        <p>Encontre de tudo por um preço acessível!</p>
+    </section>
+
+    <section class="search_holder">
+        <form onsubmit="return false;">
+            <label for="filt_form">O que você está procurando?</label>
+            <input
+                class="filt"
+                id="filt_form" 
+                type="text" 
+                placeholder="Pesquisar"
+                name="filterer"
+            >
+        </form>
+    </section>
+
+    <main>
+        <section id="campo_superior"></section>
+    </main>
+
+    <footer class="footer-loja">
+        <p>&copy; MacacoShop - 2026.</p>
+    </footer>
+
+    <script>
+         const form = document.getElementById('filt_form');
+        const Div_main = document.getElementById('campo_superior');
+
+        const produtos = [
+            [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRI8PpZD32mpG6cJaSZTOVW3e89ajcETVTNRaYnY0sohA&s=10',
+                'Celular Samsung A06',
+                'Celular Samsung modelo A06, wifi 5G, Armazenamento 250GB',
+                'Eletrônicos',
+                'R$ 2400'
+            ],
+            [
+                'https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcTEgQwb2Lr45fYN-XKJ4Uf8T71mDQYfmTmhU4jeFiAizZlveUJCK8pZx37o5WbcLkIhYXJGKJDGINUtJgxubj-syCEifJOVQliCv1ngcsNoTleZzjt1_KoknuSElKLAWwKNv7pwK93iTw&usqp=CAc', 
+                'Churrasqueira Elétrica Grill', 
+                'Churrasqueira Elétrica tipo Grill, Bivolt', 
+                'Eletrodomésticos', 
+                'R$ 550'
+            ],
+            [
+                'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcQIvzhOYdU4V5cTp7wVWXi1aQniKAh5FvsAYXzlMsUCjpNPu1kDr3vHNwvdhKPdYbh8imyctot6cflERIrkbrFdkciIJ67fda8w6Q__UCbUlTF2KG59Cgp66OKHQ_a819Gwuw_TVQo&usqp=CAc', 
+                'Geladeira Electrolux', 
+                'Geladeira alta performance Electrolux, Bivolt, gela até o rego.', 
+                'Eletrodomésticos', 
+                'R$ 2639'
+            ],
+            [
+                'https://assets.tramontina.com.br/upload/tramon/imagens/CUT/20297612PDM001G.jpg', 
+                'Kit Cozinha - Tramontina 47 Itens', 
+                'Contém Panelas Anti-aderente Tramontina, kit facas, kit utensílios, kit talheres, kit tupperware', 
+                'Utensílios de Cozinha', 
+                'R$ 400'
+            ],
+            [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTZ7Vz9zE8bnwH4LTyOqk-YR-1JSUVv2Gf7OWFf6ZSc3Q&s', 
+                'Kit Tuppereware', 
+                'Kit com tupperwares', 
+                'Armazenamento', 
+                'R$ 50'
+            ],
+            [
+                'https://encrypted-tbn1.gstatic.com/shopping?q=tbn:ANd9GcTSdLWix2HbMx_4RdqTrQyYm5unzRmo5_XuT6aczPGxlqTznl4yts2z5Rn4A1v0DVVH1jvRbo32evDCu6JkI46A3nipA_p71ZI3breeJWLgkros8hXc77FeZu4lk2dQGGjhE3cijqGDWw&usqp=CAc', 
+                'Kit Ferramentas', 
+                'Kit com ferramentas profissionais', 
+                'Ferramentas', 
+                'R$ 250'
+            ],
+            [
+                'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRtZfnOfJaLCxrK1p2oxjt3_OXxfCR3YnKYE4MCuX0EOQ&s', 
+                'Fantasia do Superman', 
+                'Fantasia Halloween Supermonkey Masculino', 
+                'Cosméticos', 
+                'R$ 150'
+            ],
+            [
+                'https://encrypted-tbn2.gstatic.com/shopping?q=tbn:ANd9GcTRb5d1ss2A1QcAxJXhQsR-DldLMqlf7i5vYJy8XTUvSawDxaY-1WqX1MHHhQk_42YhO74sPxRBNGwem1liJwnOhFZhuOkZmHxtk59lhl4', 
+                'Relógio Digital', 
+                'Relógio Digital Preto Masculino', 
+                'Eletrônicos', 
+                'R$ 86'
+            ],
+
+        ];
+
+        function renderizarProdutos(lista) {
+            Div_main.innerHTML = ''; 
+            
+            lista.forEach((produto) => {
+                const create_Div = document.createElement('section');
+                create_Div.setAttribute('class', 'card');
+                Div_main.append(create_Div);
+
+                produto.forEach((argument, index) => {
+                    if (index === 0) {
+                        const create_Img = document.createElement('img');
+                        create_Img.src = argument;
+                        create_Img.alt = produto[1];
+                        create_Div.append(create_Img);
+                    } else {
+                        const create_Text = document.createElement('p');
+                        create_Text.textContent = argument;
+                        create_Div.append(create_Text);
+                    }
+                });   
+            });
+        }
+        
+        renderizarProdutos(produtos);
+
+        form.addEventListener('input', function() {
+            const searchValue = form.value.toLowerCase().trim();
+
+            const produtosFiltrados = produtos.filter(produto => {
+                const produtoTexto = produto.join(' ').toLowerCase();
+                return produtoTexto.includes(searchValue);
+            });
+
+            renderizarProdutos(produtosFiltrados);
+        });
+    </script>
+</body>
+</html>
